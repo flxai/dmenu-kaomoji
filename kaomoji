@@ -1,0 +1,17 @@
+#!/bin/bash
+# Lets you select a kaomoji to copy to your clipboard
+
+DMENU_OPTS=(-b -fn "Droid Sans Mono-14:normal" -sf \#ebdbb2 -sb \#458588 -nf \#ebdbb2 -nb \#282828)
+CWD=$(dirname "$0")
+KAOMOJI="$CWD/kaomoji.lst"
+
+# Look up icon
+match_str=$(cat "$KAOMOJI" | dmenu "${DMENU_OPTS[@]}")
+match_icon=$(echo "$match_str" | cut -d\  -f2-)
+
+if [[ "$match_str" == "$match_icon" ]]; then
+    # Fallback to string input if icon was not found
+    match_icon="$match_str"
+fi
+
+echo "$match_icon" | xclip
