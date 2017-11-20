@@ -14,4 +14,4 @@ if [[ "$match_str" == "$match_icon" ]]; then
     match_icon="$match_str"
 fi
 
-echo "$match_icon" | xclip
+echo -n "$match_icon" | xclip
